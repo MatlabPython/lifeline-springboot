@@ -1,5 +1,6 @@
 package com.example.service.impl;
 
+import com.example.common.config.TargetDataSource;
 import com.example.dao.TuserDao;
 import com.example.entity.Tuser;
 import com.example.service.UserService;
@@ -22,6 +23,7 @@ public class UserServiceImpl implements UserService {
     private TuserDao userDao;
 
     @Override
+    @TargetDataSource(name="ds1")
     public List<Tuser> readByLoginName(int id) {
         return userDao.queryFamilyList(id);
     }
