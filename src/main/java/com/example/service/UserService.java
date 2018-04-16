@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.entity.Tcompany;
 import com.example.entity.Tuser;
 
 import java.util.List;
@@ -13,4 +14,6 @@ import java.util.List;
  */
 public interface UserService {
     public List<Tuser> readByLoginName(int id);
+
+    public List<Tcompany> getNameById(int id);
 }

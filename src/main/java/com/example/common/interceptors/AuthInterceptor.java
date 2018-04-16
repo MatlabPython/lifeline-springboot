@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        httpServletResponse.sendRedirect("/views/login.html");
+//        httpServletResponse.sendRedirect("/views/login.html");
         System.out.println(1);
         return true;
     }

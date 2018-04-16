@@ -1,5 +1,6 @@
 package com.example.dao;
 
+import com.example.entity.Tcompany;
 import com.example.entity.Tuser;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -20,6 +21,9 @@ public interface TuserDao extends PagingAndSortingRepository<Tuser, Long>, JpaSp
 //    List<Tuser> queryFamilyList(@Param("id") Long id, Pageable pageable);
 
     List<Tuser> queryFamilyList(@Param("id") int id);
+    @Query(value = "from Tcompany t where id = :id")
+//    List<Tuser> queryFamilyList(@Param("id") Long id, Pageable pageable);
 
+    List<Tcompany>queryBy(@Param("id") int id);
 
 }
