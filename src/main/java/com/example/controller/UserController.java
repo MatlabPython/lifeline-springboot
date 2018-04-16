@@ -4,6 +4,7 @@ import com.example.entity.Tcompany;
 import com.example.entity.Tuser;
 //import com.example.service.RedisService;
 import com.example.service.UserService;
+import com.example.utils.kafka.Sender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,8 @@ public class UserController {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
-//    @Autowired
-//    private RedisService redisService;
+    @Autowired
+    private Sender sender;
 
     @RequestMapping("/demo")
     @ResponseBody
@@ -69,6 +70,12 @@ public class UserController {
     public String index() {
         stringRedisTemplate.opsForValue().set("token:aaa","123");
 //        redisService.set("key","gyf");
+        sender.sendMessage();
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return "index.html";
     }
 

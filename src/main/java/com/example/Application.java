@@ -20,14 +20,14 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 public class Application {
     public static void main(String[] args) {
         ApplicationContext app = SpringApplication.run(Application.class, args);
-        while (true) {
-            Sender sender = app.getBean(Sender.class);
-            sender.sendMessage();
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+//        while (true) {
+//            Sender sender = app.getBean(Sender.class);
+//            sender.sendMessage();
+//            try {
+//                Thread.sleep(500);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 }
