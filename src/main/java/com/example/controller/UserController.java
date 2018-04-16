@@ -2,7 +2,6 @@ package com.example.controller;
 
 import com.example.entity.Tcompany;
 import com.example.entity.Tuser;
-//import com.example.service.RedisService;
 import com.example.service.UserService;
 import com.example.utils.kafka.Sender;
 import org.slf4j.Logger;
