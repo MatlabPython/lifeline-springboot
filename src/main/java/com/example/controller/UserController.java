@@ -8,11 +8,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +40,8 @@ public class UserController {
 
     @Autowired
     private Sender sender;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @RequestMapping("/demo")
     @ResponseBody
@@ -58,24 +62,26 @@ public class UserController {
     public Map<String, Object> getUserByName(@PathVariable int id) {
         Map<String, Object> result = new HashMap<String, Object>();
         List<Tuser> user = userService.readByLoginName(id);
-        List<Tcompany> tcompanyLIst=userService.getNameById(id);
+        List<Tcompany> tcompanyLIst = userService.getNameById(id);
         System.out.println(tcompanyLIst.get(0).getName());
         Assert.notNull(user);
         result.put("name", user.get(0).getUserName());
         return result;
     }
+
     @RequestMapping("/index")
     @ResponseBody
     public String index() {
-        stringRedisTemplate.opsForValue().set("token:aaa","123");
-//        redisService.set("key","gyf");
-        sender.sendMessage();
+//        stringRedisTemplate.opsForValue().set("token:aaa","123");
+        List list = userService.getListById();
+        System.out.println(list.get(0));
+//        sender.sendMessage();
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return "index.html";
+        return "success";
     }
 
 }

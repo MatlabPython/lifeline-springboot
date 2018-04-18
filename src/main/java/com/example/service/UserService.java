@@ -16,4 +16,5 @@ public interface UserService {
     public List<Tuser> readByLoginName(int id);
 
     public List<Tcompany> getNameById(int id);
+    public List getListById();
 }

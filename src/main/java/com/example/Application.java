@@ -6,7 +6,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Import;
-import org.springframework.data.redis.core.StringRedisTemplate;
 
 /**
  * @Author: yifeng G
@@ -19,15 +18,15 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 @Import({DynamicDataSourceRegister.class}) // 注册动态多数据源
 public class Application {
     public static void main(String[] args) {
-        ApplicationContext app = SpringApplication.run(Application.class, args);
-//        while (true) {
-//            Sender sender = app.getBean(Sender.class);
-//            sender.sendMessage();
-//            try {
-//                Thread.sleep(500);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
+        ApplicationContext app= SpringApplication.run(Application.class, args);
+        while (true) {
+            Sender sender = app.getBean(Sender.class);
+            sender.sendMessage();
+            try {
+                Thread.sleep(2000l);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

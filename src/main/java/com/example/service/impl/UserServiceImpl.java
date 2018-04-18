@@ -6,6 +6,7 @@ import com.example.entity.Tcompany;
 import com.example.entity.Tuser;
 import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -22,6 +23,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private TuserDao userDao;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
 
     @Override
@@ -35,5 +38,8 @@ public class UserServiceImpl implements UserService {
     public List<Tcompany> getNameById(int id) {
         return userDao.queryBy(id);
     }
-
+    @TargetDataSource(name = "ds3")
+    public List getListById() {
+        return jdbcTemplate.queryForList("select * from GAS_1S");
+    }
 }

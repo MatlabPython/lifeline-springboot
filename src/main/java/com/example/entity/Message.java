@@ -1,5 +1,7 @@
 package com.example.entity;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.Date;
 
 public class Message {
@@ -25,4 +27,5 @@ public class Message {
     public void setSendTime(Date sendTime) {
         this.sendTime = sendTime;
     }
+
 }
