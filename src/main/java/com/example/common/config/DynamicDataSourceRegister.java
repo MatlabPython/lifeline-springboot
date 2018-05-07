@@ -28,7 +28,7 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
     private PropertyValues dataSourcePropertyValues;
 
     // 如配置文件中未指定数据源类型，使用该默认值
-    private static final Object DATASOURCE_TYPE_DEFAULT = "org.apache.tomcat.jdbc.pool.DataSource";
+    private static final Object DATASOURCE_TYPE_DEFAULT = "com.alibaba.druid.pool.DruidDataSource";
 
     // 数据源
     private DataSource defaultDataSource;
@@ -77,8 +77,7 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
             String username = dsMap.get("username").toString();
             String password = dsMap.get("password").toString();
 
-            DataSourceBuilder factory = DataSourceBuilder.create().driverClassName(driverClassName).url(url)
-                    .username(username).password(password).type(dataSourceType);
+            DataSourceBuilder factory = DataSourceBuilder.create().driverClassName(driverClassName).url(url).username(username).password(password).type(dataSourceType);
             return factory.build();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
